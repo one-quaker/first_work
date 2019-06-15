@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mark_tags %}
+
+{% block title %}{{ TITLE }}{% endblock title %}
+
+{% block content %}
+    {% include '_navbar.html' %}
+
+    <div class="main-content">
+        {% for item in object_list %}
+            <div class="item">
+                <div class="row">
+                    <div class="intro-text col-sm text-center">
+                        {{ item.content|mark2|safe }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
+
+{% block css %}
+    {{ block.super }}
+    <style media="screen">
+        .container-fluid {
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+    </style>
+{% endblock css %}

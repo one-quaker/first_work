@@ -1,0 +1,43 @@
+version: '3.2'
+
+services:
+    db:
+        image: postgres:10.7
+        env_file:
+            - app_env/db
+        environment:
+            - PGDATA=/var/lib/postgresql/data
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+
+    app-prod:
+        env_file:
+            - app_env/db
+        environment:
+            - DEBUG=0
+        image: onepycoder/first_work:latest
+        entrypoint: ['/bin/bash', '/entrypoint.sh', 'gunicorn', 'first_work']
+        volumes:
+            - ./src:/python_app
+        ports:
+            - '127.0.0.1:8200:8000'
+        depends_on:
+            - db
+        restart: always
+
+    app-dev:
+        env_file:
+            - app_env/db
+        environment:
+            - DEBUG=1
+        image: onepycoder/first_work:latest
+        volumes:
+            - ./src:/python_app
+        ports:
+            - '127.0.0.1:8201:8000'
+        depends_on:
+            - db
+
+volumes:
+    pgdata:
+        driver: local

@@ -1,0 +1,8 @@
+version: '3.2'
+
+services:
+    python_project:
+        build:
+            dockerfile: ./dev/Dockerfile
+            context: ./
+        image: onepycoder/first_work:latest
