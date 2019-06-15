@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView, ListView, DetailView
+from django.db.models import Q
 
 from .models import Job
-from .filters import SearchFilter
 
 
 class IndexView(TemplateView):
@@ -22,5 +22,19 @@ class JobListView(ListView):
 
     def get_queryset(self):
         qs = self.model.objects.all()
-        filtered_list = SearchFilter(self.request.GET, queryset=qs)
-        return filtered_list.qs
+        q = self.request.GET.get('name', '')
+
+        try:
+            job_type = int(self.request.GET.get('job_type'))
+        except:
+            job_type = None
+
+        if job_type in (Job.JOB_DEFAULT, Job.JOB_VOLUNTEER, Job.JOB_INTERNSHIP):
+            qs = self.model.objects.filter(job_type=job_type)
+        elif q:
+            qs = self.model.objects.filter(
+                Q(name__icontains=q) |
+                Q(description__icontains=q)
+            )
+
+        return qs

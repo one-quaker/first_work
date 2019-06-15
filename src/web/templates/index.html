@@ -5,17 +5,9 @@
 {% block title %}{{ TITLE }}{% endblock title %}
 
 {% block content %}
-    {% include '_navbar.html' %}
-
-    {% for item in object_list %}
-        <div class="item">
-            <div class="row">
-                <div class="intro-text col-sm text-center">
-                    {{ item.content|mark2|safe }}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+    <form action="{% url 'job-list-page' %}" method="get">
+        <input id="search" type="text" name="name" value="">
+    </form>
 {% endblock content %}
 
 {% block css %}
