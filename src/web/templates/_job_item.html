@@ -1,0 +1,8 @@
+{% load mark_tags %}
+
+<div class="job-item">
+    <h3>{{ item.name }}</h3>
+    <p>{{ item.employer }}</p>
+    <p>{{ item.city }}</p>
+    <p>{{ item.description|mark2|safe|truncatewords_html:16 }}</p>
+</div>

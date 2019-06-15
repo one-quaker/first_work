@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mark_tags %}
+
+{% block title %}{{ TITLE }} - Job list{% endblock title %}
+
+{% block content %}
+    {% include '_navbar.html' %}
+
+    <div class="row">
+        <div class="filter-block text-center col-sm-3">
+            <p>Filter here</p>
+        </div>
+        <div class="job-list-block col-sm-9">
+            {% for item in object_list %}
+                {% include '_job_item.html' %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
+
+{% block css %}
+    {{ block.super }}
+    <style media="screen">
+        .job-item {
+            padding-bottom: 48px;
+        }
+    </style>
+{% endblock css %}

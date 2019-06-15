@@ -7,17 +7,15 @@
 {% block content %}
     {% include '_navbar.html' %}
 
-    <div class="main-content">
-        {% for item in object_list %}
-            <div class="item">
-                <div class="row">
-                    <div class="intro-text col-sm text-center">
-                        {{ item.content|mark2|safe }}
-                    </div>
+    {% for item in object_list %}
+        <div class="item">
+            <div class="row">
+                <div class="intro-text col-sm text-center">
+                    {{ item.content|mark2|safe }}
                 </div>
             </div>
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
 {% endblock content %}
 
 {% block css %}

@@ -1,4 +1,6 @@
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
+
+from .models import Job
 
 
 class IndexView(TemplateView):
@@ -6,5 +8,13 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx['project_title'] = 'First work'
+        return ctx
+
+
+class JobListView(ListView):
+    template_name = 'job_list.html'
+    model = Job
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
         return ctx
