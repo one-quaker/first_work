@@ -56,15 +56,35 @@ class Job(CreatedMixin, NameSlugMixin):
         (17, 17),
     )
 
+    JOB_DEFAULT = 0
+    JOB_VOLUNTEER = 1
+    JOB_INTERNSHIP = 2
+    JOB_TYPE_CHOICES = (
+        (JOB_DEFAULT, 'Работа'),
+        (JOB_VOLUNTEER, 'Волонтерство'),
+        (JOB_INTERNSHIP, 'Стажировка'),
+    )
+
     city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True)
     age = models.PositiveSmallIntegerField(choices=AGE_CHOICES)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     employer = models.ForeignKey(Employer, on_delete=models.SET_NULL, null=True)
+    job_type = models.PositiveSmallIntegerField(choices=JOB_TYPE_CHOICES, default=JOB_DEFAULT)
     description = models.TextField(max_length=4096, default='')
     salary = models.PositiveSmallIntegerField(blank=True, default=0)
 
     class Meta:
         ordering = ['created_at', ]
+
+    @property
+    def job_type_icon(self):
+        if self.job_type == Job.JOB_VOLUNTEER:
+            icon = 'icon-volunteer'
+        elif self.job_type == Job.JOB_INTERNSHIP:
+            icon = 'icon-intern'
+        else:
+            icon = 'icon-default'
+        return icon
 
 
 @receiver(pre_save, sender=City)
