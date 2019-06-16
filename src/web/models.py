@@ -31,6 +31,11 @@ class NameSlugMixin(models.Model):
         return self.name
 
 
+class IsActiveManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active=True)
+
+
 class City(NameSlugMixin):
     pass
 
@@ -65,6 +70,7 @@ class Job(CreatedMixin, NameSlugMixin):
         (JOB_INTERNSHIP, 'Стажировка'),
     )
 
+    is_active = models.BooleanField(default=False)
     city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True)
     age = models.PositiveSmallIntegerField(choices=AGE_CHOICES)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
@@ -73,6 +79,9 @@ class Job(CreatedMixin, NameSlugMixin):
     description = models.TextField(max_length=4096, default='')
     is_hot = models.BooleanField(default=False)
     salary = models.PositiveSmallIntegerField(blank=True, default=0)
+
+    objects = models.Manager()
+    is_active_objects = IsActiveManager()
 
     class Meta:
         ordering = ['created_at', ]

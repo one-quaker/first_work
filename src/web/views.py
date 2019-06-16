@@ -7,6 +7,7 @@ from .models import Job
 class IndexView(ListView):
     template_name = 'index.html'
     model = Job
+    queryset = Job.is_active_objects.all()
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -26,7 +27,7 @@ class JobListView(ListView):
         return ctx
 
     def get_queryset(self):
-        qs = self.model.objects.all()
+        qs = self.model.is_active_objects.all()
         q = self.request.GET.get('name', '')
 
         try:
@@ -35,9 +36,9 @@ class JobListView(ListView):
             job_type = None
 
         if job_type in (Job.JOB_DEFAULT, Job.JOB_VOLUNTEER, Job.JOB_INTERNSHIP):
-            qs = self.model.objects.filter(job_type=job_type)
+            qs = qs.filter(job_type=job_type)
         elif q:
-            qs = self.model.objects.filter(
+            qs.filter(
                 Q(name__icontains=q) |
                 Q(description__icontains=q)
             )
