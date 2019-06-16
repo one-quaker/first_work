@@ -6,7 +6,7 @@
 
 {% block content %}
     <div class="job-list-block row justify-content-md-center">
-        <div class="col-sm-9">
+        <div class="col-9">
             {% for item in object_list %}
                 <div class="job-item">
                     <div class="col-12">
@@ -18,27 +18,32 @@
                                 {% if item.employer.trusted %}<i class="job-item-icon fas fa-check" style="padding-left: 4px; color: green; font-style: light;" data-toggle="tooltip" data-placement="right" title="Проверенный работодатель"></i>{% endif %}
                             </div>
                             <div class="col-2 text-right">
-                                {% if item.salary %}<i class="job-item-icon fas fa-cookie-bite"></i>{{ item.salary }}${% endif %}
+                                {% if item.salary %}
+                                    <i class="job-item-icon fas fa-cookie-bite"></i>{{ item.salary }}$
+                                {% endif %}
+                                {% if show_job_type %}<i class="job-item-icon fas {{ item.job_type_icon }}"></i>{% endif %}
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12">
-                        <i class="job-item-icon fas fa-building"></i><strong class="text-muted">{{ item.employer }}</strong>
+                    <div class="col-12">
+                        <i class="job-item-icon color2 fas fa-building"></i><strong class="color2">{{ item.employer }}</strong>
                     </div>
-                    <div class="text-muted col-sm-12">
+                    <div class="text-muted col-12">
                         {{ item.description|mark2|safe|truncatewords_html:40 }}
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-12">
                         <div class="row">
-                            <div class="col-md-3 col-sm-4 col-4">
+                            <div class="col-4">
                                 <i class="job-item-icon fas fa-map-marker-alt"></i>{{ item.city }}
                             </div>
-                            <div class="col-md-3 col-sm-4 col-4">
+                            <div class="col-6">
                                 <i class="job-item-icon fas fa-calendar"></i><span class="job-item-date">{{ item.created_at|date:"d-m-Y" }}</span>
                             </div>
                         </div>
+                        <div class="job-item-border"></div>
                     </div>
                 </div>
+
             {% endfor %}
         </div>
     </div>

@@ -19,6 +19,10 @@ class JobListView(ListView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
+        try:
+            ctx['show_job_type'] = True if int(self.request.GET.get('job_type', 0)) == 0 else False
+        except Exception as e:
+            print(e)
         return ctx
 
     def get_queryset(self):
@@ -37,7 +41,6 @@ class JobListView(ListView):
                 Q(name__icontains=q) |
                 Q(description__icontains=q)
             )
-
         return qs
 
 

@@ -78,12 +78,11 @@ class Job(CreatedMixin, NameSlugMixin):
 
     @property
     def job_type_icon(self):
+        icon = ''
         if self.job_type == Job.JOB_VOLUNTEER:
-            icon = 'icon-volunteer'
+            icon = 'fa-leaf'
         elif self.job_type == Job.JOB_INTERNSHIP:
-            icon = 'icon-intern'
-        else:
-            icon = 'icon-default'
+            icon = 'fa-bolt'
         return icon
 
 
