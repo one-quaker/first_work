@@ -4,8 +4,9 @@ from django.db.models import Q
 from .models import Job
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
     template_name = 'index.html'
+    model = Job
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -38,3 +39,8 @@ class JobListView(ListView):
             )
 
         return qs
+
+
+class JobDetailView(DetailView):
+    template_name = 'job_detail.html'
+    model = Job

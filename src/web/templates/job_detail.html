@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mark_tags %}
+
+{% block title %}{{ TITLE }} - {{ object.name }}{% endblock title %}
+
+{% block content %}
+    <div class="row">
+        <div class="job-detail-block col-sm-10">
+                <h3>{{ object.name }}<i class="{{ object.job_type_icon }}"></i></h3>
+                <p><strong>{{ object.employer }}</strong></p>
+                <p>{{ object.city }}</p>
+                <p>{{ object.description|mark2|safe|truncatewords_html:16 }}</p>
+                <p>{{ object.created_at|date:"d-M-Y" }}</p>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block css %}
+    {{ block.super }}
+    <style media="screen">
+        .job-item {
+            padding-bottom: 48px;
+        }
+    </style>
+{% endblock css %}

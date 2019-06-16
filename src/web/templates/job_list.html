@@ -11,17 +11,19 @@
         </div>
         <div class="job-list-block col-sm-9">
             {% for item in object_list %}
-                {% include '_job_item.html' %}
+                <div class="job-item">
+                    <a href="{% url 'job-detail-page' slug=item.slug %}">
+                        <h3>{{ item.name }}</h3>
+                    </a>
+                    <p>
+                        <i class="job-item-icon text-muted fas fa-rocket"></i><strong class="text-muted">{{ item.employer }}</strong>
+                        {% if item.employer.trusted %}<i class="job-item-icon fas fa-check" style="padding-left: 4px; color: green; font-style: light;" data-toggle="tooltip" data-placement="right" title="Проверенный работодатель"></i>{% endif %}
+                    </p>
+                    <p><i class="job-item-icon text-muted fas fa-map-marker-alt"></i>{{ item.city }}</p>
+                    <p>{{ item.description|mark2|safe|truncatewords_html:16 }}</p>
+                    <p><i class="job-item-icon text-muted fas fa-calendar"></i>{{ item.created_at|date:"d-M-Y" }}</p>
+                </div>
             {% endfor %}
         </div>
     </div>
 {% endblock content %}
-
-{% block css %}
-    {{ block.super }}
-    <style media="screen">
-        .job-item {
-            padding-bottom: 48px;
-        }
-    </style>
-{% endblock css %}

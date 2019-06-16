@@ -105,3 +105,6 @@ venv.bak/
 
 #app env
 app_env/db
+
+#static
+public

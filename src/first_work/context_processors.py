@@ -6,4 +6,4 @@ def settings_debug(request):
 
 
 def settings_project(request):
-    return {'TITLE': 'First work'}
+    return {'TITLE': 'Tj'}

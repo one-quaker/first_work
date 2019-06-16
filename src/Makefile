@@ -1,6 +1,9 @@
 RUN=python manage.py
 
-run:
+run_gunicorn:
+	gunicorn first_work.wsgi:application -w 2 -b :8000 --reload --log-level=debug --log-file=-
+
+run_dev:
 	$(RUN) runserver 0.0.0.0:8000
 
 clean:
