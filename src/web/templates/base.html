@@ -11,13 +11,6 @@
 
             <!-- Font-awesome CSS -->
             <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet">
-
-            <style media="screen">
-                .container-fluid {
-                    padding-right: 0px;
-                    padding-left: 0px;
-                }
-            </style>
         {% endblock css %}
 
         {% block css_extra %}
@@ -25,11 +18,26 @@
                 .color1 {
                     color: #274684;
                 }
+                .fa-cookie-bite {
+                    color: #F5CC78;
+                }
                 .fa-search {
                     color: white;
                 }
+                .job-list-block {
+                    margin-top: 24px;
+                }
                 .job-item {
-                    padding-bottom: 48px;
+                    margin-bottom: 24px;
+                    padding-bottom: 24px;
+                    border-bottom: 1px solid grey;
+                }
+                .job-item p {
+                    margin-top: 4px;
+                    margin-bottom: 4px;
+                }
+                .job-item-title {
+                    font-size: 24pt;
                 }
                 .job-item-icon {
                     padding-right: 8px;
@@ -42,13 +50,14 @@
     </head>
 
     <body>
-        <div class="content">
+        <header>
+            {% include '_navbar.html' %}
+        </header>
+        <main>
             <div class="container-fluid">
-                {% include '_navbar.html' %}
                 {% block content %}{% endblock %}
             </div>
-        </div>
-
+        </main>
         {% block js %}
             <!-- Optional JavaScript -->
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -61,7 +70,6 @@
                     $('[data-toggle="tooltip"]').tooltip({'delay': {show: 250, hide: 100}});
                 });
             </script>
-
         {% endblock js %}
 
         {% block js_extra %}{% endblock js_extra %}

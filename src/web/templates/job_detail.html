@@ -10,7 +10,7 @@
                 <h3>{{ object.name }}<i class="{{ object.job_type_icon }}"></i></h3>
                 <p><strong>{{ object.employer }}</strong></p>
                 <p>{{ object.city }}</p>
-                <p>{{ object.description|mark2|safe|truncatewords_html:16 }}</p>
+                <p>{{ object.description|mark2|safe }}</p>
                 <p>{{ object.created_at|date:"d-M-Y" }}</p>
         </div>
     </div>

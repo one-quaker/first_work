@@ -5,23 +5,39 @@
 {% block title %}{{ TITLE }} - Job list{% endblock title %}
 
 {% block content %}
-    <div class="row">
-        <div class="filter-block text-center col-sm-3">
-            <p>Filter here</p>
-        </div>
-        <div class="job-list-block col-sm-9">
+    <div class="job-list-block row justify-content-md-center">
+        <div class="col-sm-9">
             {% for item in object_list %}
                 <div class="job-item">
-                    <a href="{% url 'job-detail-page' slug=item.slug %}">
-                        <h3>{{ item.name }}</h3>
-                    </a>
-                    <p>
-                        <i class="job-item-icon text-muted fas fa-rocket"></i><strong class="text-muted">{{ item.employer }}</strong>
-                        {% if item.employer.trusted %}<i class="job-item-icon fas fa-check" style="padding-left: 4px; color: green; font-style: light;" data-toggle="tooltip" data-placement="right" title="Проверенный работодатель"></i>{% endif %}
-                    </p>
-                    <p><i class="job-item-icon text-muted fas fa-map-marker-alt"></i>{{ item.city }}</p>
-                    <p>{{ item.description|mark2|safe|truncatewords_html:16 }}</p>
-                    <p><i class="job-item-icon text-muted fas fa-calendar"></i>{{ item.created_at|date:"d-M-Y" }}</p>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-10">
+                                <a href="{% url 'job-detail-page' slug=item.slug %}">
+                                    <span class="job-item-title color1">{{ item.name }}</span>
+                                </a>
+                                {% if item.employer.trusted %}<i class="job-item-icon fas fa-check" style="padding-left: 4px; color: green; font-style: light;" data-toggle="tooltip" data-placement="right" title="Проверенный работодатель"></i>{% endif %}
+                            </div>
+                            <div class="col-2 text-right">
+                                {% if item.salary %}<i class="job-item-icon fas fa-cookie-bite"></i>{{ item.salary }}${% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <i class="job-item-icon fas fa-building"></i><strong class="text-muted">{{ item.employer }}</strong>
+                    </div>
+                    <div class="text-muted col-sm-12">
+                        {{ item.description|mark2|safe|truncatewords_html:40 }}
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-4 col-4">
+                                <i class="job-item-icon fas fa-map-marker-alt"></i>{{ item.city }}
+                            </div>
+                            <div class="col-md-3 col-sm-4 col-4">
+                                <i class="job-item-icon fas fa-calendar"></i><span class="job-item-date">{{ item.created_at|date:"d-m-Y" }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
         </div>
