@@ -9,8 +9,8 @@ class JobAdmin(admin.ModelAdmin):
 
 
 class EmployerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'legal_form', 'slug', 'email', 'phone', 'hr_name', 'trusted')
-    list_filter = ('name', 'trusted')
+    list_display = ('name', 'legal_form', 'slug', 'email', 'phone', 'hr_name', 'is_trust')
+    list_filter = ('name', 'is_trust')
 
 
 admin.site.register(City)

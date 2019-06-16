@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -11,56 +13,11 @@
 
             <!-- Font-awesome CSS -->
             <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet">
+
+            <link href="{% static 'main.css' %}" rel="stylesheet">
         {% endblock css %}
 
         {% block css_extra %}
-            <style media="screen">
-                .color1 {
-                    color: #274684;
-                }
-                .color2 {
-                    color: #78909C;
-                }
-                .fa-cookie-bite {
-                    color: #F5CC78;
-                }
-                .fa-map-marker-alt {
-                    color: #F50000;
-                }
-                .fa-search {
-                    color: white;
-                }
-                .fa-bolt {
-                    color: orange;
-                }
-                .fa-leaf {
-                    color: green;
-                }
-                .fa-book-open {
-                    color: #6B4842;
-                }
-                .job-item {
-                    margin-top: 32px;
-                }
-                .job-item-border {
-                    margin-top: 32px;
-                    border-bottom: 1px solid grey;
-                }
-                .job-item p {
-                    margin-top: 4px;
-                    margin-bottom: 4px;
-                }
-                .job-item-title {
-                    font-size: 24pt;
-                }
-                .job-item-title {
-                    outline: none;
-                }
-                .job-item-icon {
-                    padding-right: 8px;
-                    font-size: 20px;
-                }
-            </style>
         {% endblock css_extra %}
 
         <title>{% block title %}Default title{% endblock %}</title>
@@ -84,7 +41,7 @@
 
             <script type="text/javascript">
                 $(document).ready(function() {
-                    $('[data-toggle="tooltip"]').tooltip({'delay': {show: 250, hide: 100}});
+                    $('[data-toggle="tooltip"]').tooltip({'delay': {show: 100, hide: 0}});
                 });
             </script>
         {% endblock js %}

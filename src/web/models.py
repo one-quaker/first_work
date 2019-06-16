@@ -44,7 +44,7 @@ class Employer(CreatedMixin, NameSlugMixin):
     email = models.EmailField(max_length=256)
     phone = models.CharField(max_length=64)
     hr_name = models.CharField(max_length=256)
-    trusted = models.BooleanField(default=False)
+    is_trust = models.BooleanField(default=False)
     logo = models.ImageField(upload_to='employer', blank=True, default='')
 
 
@@ -71,6 +71,7 @@ class Job(CreatedMixin, NameSlugMixin):
     employer = models.ForeignKey(Employer, on_delete=models.SET_NULL, null=True)
     job_type = models.PositiveSmallIntegerField(choices=JOB_TYPE_CHOICES, default=JOB_DEFAULT)
     description = models.TextField(max_length=4096, default='')
+    is_hot = models.BooleanField(default=False)
     salary = models.PositiveSmallIntegerField(blank=True, default=0)
 
     class Meta:

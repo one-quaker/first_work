@@ -107,4 +107,4 @@ venv.bak/
 app_env/db
 
 #static
-public
+src/public

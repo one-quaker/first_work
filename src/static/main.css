@@ -1,0 +1,50 @@
+.color1 {
+    color: #274684;
+}
+.color2 {
+    color: #78909C;
+}
+.fa-cookie-bite {
+    color: #F5CC78;
+}
+.fa-map-marker-alt {
+    color: #F50000;
+}
+.fa-search {
+    color: white;
+}
+.fa-bolt {
+    color: orange;
+}
+.fa-leaf {
+    color: green;
+}
+.fa-book-open {
+    color: #6B4842;
+}
+.job-item {
+    margin-top: 32px;
+}
+.job-item-border {
+    margin-top: 32px;
+    border-bottom: 1px solid grey;
+}
+.job-item p {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.job-item-title {
+    color: #274684;
+    font-size: 24pt;
+}
+a.job-item-title:hover {
+    text-decoration: none;
+    color: #4163B8;
+}
+.latest-job-list .job-item-title {
+    font-size: 16pt;
+}
+.job-item-icon {
+    padding-right: 8px;
+    font-size: 20px;
+}
