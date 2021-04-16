@@ -2,7 +2,7 @@ Scrapy==1.6.0
 Django==2.2.2
 Pillow==5.4.1
 requests==2.21.0
-django-debug-toolbar==1.11
+django-debug-toolbar==1.11.1
 ipdb==0.11
 gunicorn==19.9.0
 djangorestframework==3.9.1
