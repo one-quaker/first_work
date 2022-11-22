@@ -1,6 +1,6 @@
 Scrapy==1.6.0
 Django==2.2.2
-Pillow==5.4.1
+Pillow==9.3.0
 requests==2.21.0
 django-debug-toolbar==1.11
 ipdb==0.11
